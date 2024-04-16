@@ -1,0 +1,15 @@
+[package]
+name = "darth-ui"
+version = "0.1.0"
+edition = "2021"
+
+[package.metadata.scripts]
+dev = "cargo fmt && cargo clippy && tailwindcss -i ./styles/main.css -o ./tailwind.css && trunk serve --open"
+deploy = "cargo fmt && cargo package && cargo publish"
+clean = "cargo clean && rm -rf target && rm -rf dist && rm tailwind.css && rm -rf node_modules"
+
+[dependencies]
+darth-rust = "4.1.8"
+leptos = { version = "*", features = ["csr", "nightly"] }
+leptos-font-icons = "0.1.1"
+regex = "1.10.4"
