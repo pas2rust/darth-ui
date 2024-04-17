@@ -753,12 +753,12 @@ function __wbg_get_imports() {
         const ret = wasm.memory;
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper1669 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 199, __wbg_adapter_28);
+    imports.wbg.__wbindgen_closure_wrapper1708 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 203, __wbg_adapter_28);
         return addHeapObject(ret);
     };
-    imports.wbg.__wbindgen_closure_wrapper6814 = function(arg0, arg1, arg2) {
-        const ret = makeMutClosure(arg0, arg1, 275, __wbg_adapter_31);
+    imports.wbg.__wbindgen_closure_wrapper6853 = function(arg0, arg1, arg2) {
+        const ret = makeMutClosure(arg0, arg1, 279, __wbg_adapter_31);
         return addHeapObject(ret);
     };
 
@@ -799,7 +799,7 @@ async function __wbg_init(input) {
     if (wasm !== undefined) return wasm;
 
     if (typeof input === 'undefined') {
-        input = new URL('darth-ui-de229b7f0bbf5dfab2f43f57487a034b1285e6b52a42f924502147304022ae59064a25a959aa5db598194c97b537a4f4_bg.wasm', import.meta.url);
+        input = new URL('darth-ui-eacf17be4d2dca889afdcb259d99fa8b0f39fa6ddb9adfd9b868a29ecb98f6c651ee7b76f6739ca8ae36c0e01cfd1337_bg.wasm', import.meta.url);
     }
     const imports = __wbg_get_imports();
 
