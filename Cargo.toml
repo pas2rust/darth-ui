@@ -19,6 +19,6 @@ clean = "cargo clean && rm -rf target && rm -rf dist && rm tailwind.css && rm -r
 
 [dependencies]
 darth-rust = "4.1.8"
-leptos = { version = "*", features = ["csr", "nightly"] }
+leptos = { version = "0.6.11", features = ["csr", "nightly"] }
 leptos-font-icons = "0.1.1"
 regex = "1.10.4"
