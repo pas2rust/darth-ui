@@ -1,0 +1,45 @@
+@layer components {
+    .toast {
+        @apply
+            animate-toast_in 
+            mx-auto 
+            m-4 
+            rounded-full;
+    }
+    .toast_top_start {
+        @apply
+            toast
+            top-0
+            left-0;
+    }
+    .toast_top_mid {
+        @apply
+            toast
+            top-0 
+            inset-x-0
+    }
+    .toast_top_end {
+        @apply
+            toast
+            top-0 
+            right-0
+    }
+    .toast_bottom_start {
+        @apply
+            toast
+            bottom-0
+            left-0;
+    }
+    .toast_bottom_mid {
+        @apply
+            toast
+            bottom-0
+            inset-x-0
+    }
+    .toast_bottom_end {
+        @apply
+            toast
+            bottom-0
+            right-0
+    }
+}

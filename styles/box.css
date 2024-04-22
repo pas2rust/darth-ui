@@ -1,6 +1,22 @@
 @tailwind components;
 
 @layer components {
+    .box_gradient_sunset {
+      @apply
+        transition
+        hover:transition
+        bg-gradient-to-r 
+        from-purple-400 
+        via-pink-500 
+        to-red-500 
+        text-white 
+        font-bold 
+        py-2 
+        px-4
+        mt-4
+        mb-4
+        rounded-full;
+    }
     .box_ghost_config {
         @apply 
           transition
@@ -9,8 +25,9 @@
           bg-transparent 
           border-solid 
           border
+          hover:transition
           rounded-md;
-      }
+    }
     .box_ghost_white {
       @apply 
         box_ghost_config

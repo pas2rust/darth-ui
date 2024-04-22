@@ -1,6 +1,6 @@
 [package]
 name = "darth-ui"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "darth-ui"
 authors = ["Pas2Rust <pas2000@proton.me>"]
@@ -18,7 +18,15 @@ deploy = "cargo fmt && cargo package && cargo publish"
 clean = "cargo clean && rm -rf target && rm -rf dist && rm tailwind.css && rm -rf node_modules"
 
 [dependencies]
-darth-rust = "4.1.8"
+darth-rust = "4.2.0"
+js-sys = "0.3.69"
 leptos = { version = "0.6.11", features = ["csr", "nightly"] }
-leptos-font-icons = "0.1.1"
-regex = "1.10.4"
+regex = {version = "1.10.4", optional = true}
+
+[features]
+default = ["examples"]
+form = ["regex"]
+button = []
+container = []
+icons = []
+examples = ["form", "container", "button", "icons"]

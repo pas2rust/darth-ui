@@ -1,3 +1,4 @@
+#![cfg(feature = "container")]
 use darth_rust::DarthRust;
 use leptos::*;
 

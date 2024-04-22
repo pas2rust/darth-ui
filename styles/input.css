@@ -1,18 +1,14 @@
 @tailwind components;
 
 @layer components {
-    .input_config {
+    .input {
         @apply 
             transition
             bg-transparent 
             p-2 
             pl-14 
             outline-none 
-            w-[100%] 
-    }
-    .input_focus_indigo_9 {
-        @apply 
-            input_config
-            focus:transition focus:bg-indigo-900;
+            w-[100%]
+            focus:transition
     }
 }
