@@ -4,7 +4,8 @@
 @import "container.css";
 @import "box.css";
 @import "input.css";
-@import "toast.css"
+@import "toast.css";
+@import "button.css";
 
 @layer base {
     * {
@@ -12,6 +13,6 @@
       margin: 0;
     }
     body {
-      font-family: 'Fira Code', monospace;
+      font-family: 'fira-code', monospace;
     }
   }

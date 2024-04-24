@@ -1,3 +1,4 @@
+#![cfg(feature = "input-text")]
 use darth_rust::DarthRust;
 use leptos::*;
 

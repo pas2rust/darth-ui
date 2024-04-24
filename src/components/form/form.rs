@@ -1,3 +1,4 @@
+#![cfg(feature = "form")]
 use leptos::{leptos_dom::logging::console_warn, *};
 use std::collections::HashMap;
 use wasm_bindgen::JsCast;

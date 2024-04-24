@@ -1,7 +1,8 @@
 use darth_rust::DarthRust;
-use js_sys::{wasm_bindgen::JsValue, Array};
 use leptos::{leptos_dom::logging::console_error, *};
 use std::time::Duration;
+
+use super::case::case;
 
 #[derive(Default)]
 pub enum ToastPosition {
@@ -14,12 +15,29 @@ pub enum ToastPosition {
     BottomEnd,
 }
 
+#[derive(DarthRust, Default)]
+pub struct ToastBodyBuild {
+    class: &'static str,
+    content: String,
+    tag: Option<&'static str>,
+}
+
+#[derive(DarthRust, Default)]
+pub struct ToastTitleBuild {
+    class: &'static str,
+    content: String,
+    tag: Option<&'static str>,
+}
+
 #[derive(DarthRust)]
 pub struct ToastBuild {
-    class: &'static str,
-    position: ToastPosition,
-    message: String,
+    title: ToastTitleBuild,
+    pub class: &'static str,
+    pub position: ToastPosition,
+    body: ToastBodyBuild,
     duration_seconds: Option<u64>,
+    unique: bool,
+    tag: Option<&'static str>,
 }
 
 pub fn toast(props: ToastBuild) {
@@ -27,82 +45,32 @@ pub fn toast(props: ToastBuild) {
     let doc = document();
     let toaster = doc.get_element_by_id("toaster");
     if let Some(toaster) = toaster {
-        let div = doc.create_element("div").unwrap();
-        let h1 = doc.create_element("h1").unwrap();
-        h1.set_class_name("p-2 font-bold flex");
-        h1.set_text_content(Some(&props.message));
-        match props.position {
-            ToastPosition::TopStart => {
-                toaster.set_class_name(
-                    "top-0 left-0 fixed z-50 flex flex-col-reverse gap-4 justify-start transition",
-                );
-                div.set_class_name("animate-slideInTop mx-auto rounded-md");
-                let class = Array::new();
-                let js_value = JsValue::from_str(props.class);
-                class.push(&js_value);
-                div.class_list().add(&class).unwrap();
+        let toast = doc.create_element(props.tag.unwrap_or("div")).unwrap();
+        let title = doc.create_element(props.title.tag.unwrap_or("h2")).unwrap();
+        let body = doc.create_element(props.body.tag.unwrap_or("p")).unwrap();
+        title.set_class_name(props.title.class);
+        title.set_text_content(Some(&props.title.content));
+        body.set_class_name(props.body.class);
+        body.set_text_content(Some(&props.body.content));
+        let class_output = case(&props, &toaster, &toast);
+        toast.append_child(&title).unwrap();
+        toast.append_child(&body).unwrap();
+        if props.unique {
+            if let Some(node) = toaster.first_child() {
+                toaster.replace_child(&toast, &node).unwrap();
+            } else {
+                toaster.append_child(&toast).unwrap();
             }
-            ToastPosition::TopMid => {
-                toaster.set_class_name(
-                    "top-0 inset-x-0 fixed z-50 flex flex-col-reverse gap-4 justify-center transition",
-                );
-                div.set_class_name("animate-slideInTop mx-auto rounded-md");
-                let class = Array::new();
-                let js_value = JsValue::from_str(props.class);
-                class.push(&js_value);
-                div.class_list().add(&class).unwrap();
-            }
-            ToastPosition::TopEnd => {
-                toaster.set_class_name(
-                    "top-0 right-0 fixed z-50 flex flex-col-reverse gap-4 justify-end transition",
-                );
-                div.set_class_name("animate-slideInTop mx-auto rounded-md");
-                let class = Array::new();
-                let js_value = JsValue::from_str(props.class);
-                class.push(&js_value);
-                div.class_list().add(&class).unwrap();
-            }
-            ToastPosition::BottomStart => {
-                toaster.set_class_name(
-                    "bottom-0 left-0 fixed z-50 flex flex-col-reverse gap-4 justify-start transition",
-                );
-                div.set_class_name("animate-toastin mx-auto rounded-md");
-                let class = Array::new();
-                let js_value = JsValue::from_str(props.class);
-                class.push(&js_value);
-                div.class_list().add(&class).unwrap();
-            }
-            ToastPosition::BottomMid => {
-                toaster.set_class_name(
-                    "bottom-0 inset-x-0 fixed z-50 flex flex-col-reverse gap-4 justify-center transition",
-                );
-                div.set_class_name("animate-toastin mx-auto rounded-md");
-                let class = Array::new();
-                let js_value = JsValue::from_str(props.class);
-                class.push(&js_value);
-                div.class_list().add(&class).unwrap();
-            }
-            ToastPosition::BottomEnd => {
-                toaster.set_class_name(
-                    "bottom-0 right-0 fixed z-50 flex flex-col-reverse gap-4 justify-end transition",
-                );
-                div.set_class_name("animate-toastin mx-auto rounded-md");
-                let class = Array::new();
-                let js_value = JsValue::from_str(props.class);
-                class.push(&js_value);
-                div.class_list().add(&class).unwrap();
-            }
-        };
-        div.append_child(&h1).unwrap();
-        toaster.append_child(&div).unwrap();
+        } else {
+            toaster.append_child(&toast).unwrap();
+        }
         set_timeout(
             move || {
-                let value = format!(
-                    "transition: {}s ease-in-out; transform: translateY(100%); opacity:0;",
-                    duration_seconds
+                toast.set_attribute("style", class_output.as_str()).unwrap();
+                set_timeout(
+                    move || toast.remove(),
+                    Duration::new(duration_seconds, 1000),
                 );
-                div.set_attribute("style", value.as_str()).unwrap();
-                set_timeout(move || div.remove(), Duration::new(duration_seconds, 1000));
             },
             Duration::new(duration_seconds, 1000),
         );

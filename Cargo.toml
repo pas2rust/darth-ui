@@ -1,6 +1,6 @@
 [package]
 name = "darth-ui"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "darth-ui"
 authors = ["Pas2Rust <pas2000@proton.me>"]
@@ -25,8 +25,9 @@ regex = {version = "1.10.4", optional = true}
 
 [features]
 default = ["examples"]
-form = ["regex"]
+form = ["regex", "input-text"]
+input-text = []
 button = []
 container = []
 icons = []
-examples = ["form", "container", "button", "icons"]
+examples = ["form", "container", "button", "icons", "input-text"]

@@ -4,7 +4,7 @@ use crate::components::container::container::ContainerBuild;
 use crate::components::form::components::text::{InputBuild, InputText, LabelBuild};
 use crate::components::form::form::{Form, FormBuild};
 use crate::components::icons::{icon::Icon, icons::IconBuild};
-use crate::components::toast::toast::{toast, ToastBuild, ToastPosition};
+use crate::components::toast::toast::{toast, ToastBodyBuild, ToastBuild, ToastPosition};
 use darth_rust::DarthRust;
 use leptos::*;
 
@@ -25,7 +25,7 @@ pub struct Form {
 pub fn RegisterForm() -> impl IntoView {
     view! {
         <Form props=FormBuild::new()
-           .class("box_ghost_purple_3 p-4 m-4")
+           .class("")
             .submit(|hashmap, _| {
                 let user = hashmap.get("user").expect("Input name user not found");
                 let email = hashmap.get("email").expect("Input name email not found");
@@ -36,23 +36,32 @@ pub fn RegisterForm() -> impl IntoView {
                     .password(password)
                     .build();
                 if let Ok(form) = form {
-                    let message = format!(
-                        " (200, user: {}, email: {}, password: {})",
+                    let body_content = format!(
+                        "(200, user: {}, email: {}, password: {})",
                         form.user, form.email, form.password
                     );
                     toast(ToastBuild::new()
                         .class("bg-green-500")
                         .position(ToastPosition::TopEnd)
-                        .duration_seconds(5)
-                        .message(message)
+                        .duration_seconds(3)
+                        .body(
+                            ToastBodyBuild::new()
+                            .class("p-2")
+                            .content(body_content)
+                            .tag("p")
+                        )
                     );
-                } else if let Err(form) = form {
-                    let message = format!(" (404: {})", form);
+                } else if let Err(content) = form {
                     toast(ToastBuild::new()
-                        .class("bg-red-500")
-                        .position(ToastPosition::TopEnd)
-                        .duration_seconds(5)
-                        .message(message)
+                        .class("bg-indigo-600")
+                        .position(ToastPosition::TopMid)
+                        .duration_seconds(10)
+                        .body(
+                            ToastBodyBuild::new()
+                            .class("p-2 font-bold")
+                            .content(content)
+                        )
+                        .unique(true)
                     );
                 }
         })>
@@ -67,7 +76,7 @@ pub fn RegisterForm() -> impl IntoView {
                     .size::<usize>(24)
                 )
                 .input_box(ContainerBuild::new()
-                    .class("box_ghost_white hover:border-indigo-400")
+                    .class("box_ghost hover:border-indigo-400")
                 )
                 .container(ContainerBuild::new()
                     .class("p-2")
@@ -87,7 +96,7 @@ pub fn RegisterForm() -> impl IntoView {
                     .size::<usize>(24)
                 )
                 .input_box(ContainerBuild::new()
-                    .class("box_ghost_white hover:border-indigo-400")
+                    .class("box_ghost border-white hover:border-indigo-400")
                 )
                 .container(ContainerBuild::new()
                     .class("p-2")
@@ -107,7 +116,7 @@ pub fn RegisterForm() -> impl IntoView {
                     .size::<usize>(24)
                 )
                 .input_box(ContainerBuild::new()
-                    .class("box_ghost_white hover:border-indigo-400")
+                    .class("box_ghost hover:border-indigo-400")
                 )
                 .container(ContainerBuild::new()
                     .class("p-2")
@@ -117,7 +126,7 @@ pub fn RegisterForm() -> impl IntoView {
                 .name("password")
             />
             <Button props=ButtonBuild::new()
-                .class("box_gradient_sunset w-full")
+                .class("button_sunset w-full")
                 .kind("submit")
             >
                 "Register"
