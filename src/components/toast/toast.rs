@@ -84,8 +84,7 @@ pub fn toast(props: ToastBuild) {
                     progress_bar
                         .set_attribute(
                             "style",
-                            format!("width:{}%;transition:1s;", progress.get())
-                                .as_str(),
+                            format!("width:{}%;transition:1s;", progress.get()).as_str(),
                         )
                         .unwrap();
                     elapsed_time.set(elapsed_time.get() + 1);
