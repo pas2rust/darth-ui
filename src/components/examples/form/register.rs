@@ -48,17 +48,17 @@ pub fn RegisterForm() -> impl IntoView {
                             ToastBodyBuild::new()
                             .class("p-2")
                             .content(body_content)
-                            .tag("p")
+                            .tag("div")
                         )
                     );
                 } else if let Err(content) = form {
                     toast(ToastBuild::new()
-                        .class("bg-indigo-600")
+                        .class("bg-blue-600 overflow-hidden")
                         .position(ToastPosition::TopMid)
-                        .duration_seconds(10)
+                        .duration_seconds(5)
                         .body(
                             ToastBodyBuild::new()
-                            .class("p-2 font-bold")
+                            .class("p-2 font-bold grid")
                             .content(content)
                         )
                         .unique(true)

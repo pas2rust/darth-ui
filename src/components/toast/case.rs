@@ -1,5 +1,5 @@
 use super::toast::{ToastBuild, ToastPosition};
-use js_sys::{wasm_bindgen::JsValue, Array};
+use js_sys::wasm_bindgen::JsValue;
 use leptos::web_sys::Element;
 
 pub fn case(props: &ToastBuild, toaster: &Element, toast: &Element) -> String {
@@ -27,9 +27,9 @@ pub fn case(props: &ToastBuild, toaster: &Element, toast: &Element) -> String {
             class_output =
                 "transition: 2s ease-in-out; transform: translateY(-100%); opacity:0;".to_string();
             toaster.set_class_name(
-                "top-0 inset-x-0 fixed z-50 flex flex-col-reverse gap-4 justify-center transition",
+                "top-0 inset-x-0 fixed z-50 flex flex-col-reverse gap-4 justify-center transition pointer-events-none",
             );
-            toast.set_class_name("animate-slideInTop mx-auto rounded-b-lg");
+            toast.set_class_name("animate-slideInTop mx-auto m-4 p-2 rounded-md");
             add_class_to_toast();
         }
         ToastPosition::TopEnd => {
