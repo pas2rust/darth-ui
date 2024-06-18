@@ -5,7 +5,7 @@ use crate::components::form::components::text::{InputBuild, InputText, LabelBuil
 use crate::components::form::form::{Form, FormBuild};
 use crate::components::icons::{icon::Icon, icons::IconBuild};
 use crate::components::toast::body::ToastBodyBuild;
-use crate::components::toast::toast::{toast, ToastBuild, ToastPosition};
+use crate::components::toast::toast::{Toast, ToastPosition};
 use darth_rust::DarthRust;
 use leptos::*;
 
@@ -41,19 +41,20 @@ pub fn RegisterForm() -> impl IntoView {
                         "(200, user: {}, email: {}, password: {})",
                         form.user, form.email, form.password
                     );
-                    toast(ToastBuild::new()
+                    Toast::new()
                         .class("bg-green-500")
-                        .position(ToastPosition::TopEnd)
-                        .duration_seconds(3)
-                        .body(
-                            ToastBodyBuild::new()
-                            .class("p-2")
-                            .content(body_content)
-                            .tag("div")
-                        )
-                    );
+                            .position(ToastPosition::TopEnd)
+                            .duration_seconds(3)
+                            .body(
+                                ToastBodyBuild::new()
+                                .class("p-2")
+                                .content(body_content)
+                                .tag("div")
+                            )
+                        .render()
+
                 } else if let Err(content) = form {
-                    toast(ToastBuild::new()
+                    Toast::new()
                         .class("bg-blue-600 overflow-hidden")
                         .position(ToastPosition::TopMid)
                         .duration_seconds(5)
@@ -63,7 +64,7 @@ pub fn RegisterForm() -> impl IntoView {
                             .content(content)
                         )
                         .unique(true)
-                    );
+                        .render()
                 }
         })>
             <InputText props=InputBuild::new()

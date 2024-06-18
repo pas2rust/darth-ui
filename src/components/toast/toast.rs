@@ -19,7 +19,7 @@ pub enum ToastPosition {
 }
 
 #[derive(DarthRust)]
-pub struct ToastBuild {
+pub struct Toast {
     title: ToastTitleBuild,
     pub class: &'static str,
     pub position: ToastPosition,
@@ -29,37 +29,39 @@ pub struct ToastBuild {
     tag: Option<&'static str>,
 }
 
-pub fn toast(props: ToastBuild) {
-    let duration = props.duration_seconds.unwrap_or(2);
-    let doc = document();
-    let toaster = doc.get_element_by_id("toaster");
-    if let Some(toaster) = toaster {
-        let toast = doc.create_element(props.tag.unwrap_or("div")).unwrap();
-        let title = title(&doc, &props.title);
-        let body = body(&doc, &props.body);
-        let class_output = case(&props, &toaster, &toast);
-        toast.append_child(&title).unwrap();
-        toast.append_child(&body).unwrap();
-        if props.unique {
-            if let Some(node) = toaster.first_child() {
-                toaster.replace_child(&toast, &node).unwrap();
+impl Toast {
+    pub fn render(&self) {
+        let duration = self.duration_seconds.unwrap_or(2);
+        let doc = document();
+        let toaster = doc.get_element_by_id("toaster");
+        if let Some(toaster) = toaster {
+            let toast = doc.create_element(&self.tag.unwrap_or("div")).unwrap();
+            let title = title(&doc, &self.title);
+            let body = body(&doc, &self.body);
+            let class_output = case(&self, &toaster, &toast);
+            toast.append_child(&title).unwrap();
+            toast.append_child(&body).unwrap();
+            if self.unique {
+                if let Some(node) = toaster.first_child() {
+                    toaster.replace_child(&toast, &node).unwrap();
+                } else {
+                    toaster.append_child(&toast).unwrap();
+                }
             } else {
                 toaster.append_child(&toast).unwrap();
             }
+
+            progress(doc, body, duration.clone());
+
+            set_timeout(
+                move || {
+                    toast.set_attribute("style", class_output.as_str()).unwrap();
+                    set_timeout(move || toast.remove(), Duration::new(duration, 1000));
+                },
+                Duration::new(duration, 1000),
+            );
         } else {
-            toaster.append_child(&toast).unwrap();
+            console_error("toaster id in index.html must be provided")
         }
-
-        progress(doc, body, duration.clone());
-
-        set_timeout(
-            move || {
-                toast.set_attribute("style", class_output.as_str()).unwrap();
-                set_timeout(move || toast.remove(), Duration::new(duration, 1000));
-            },
-            Duration::new(duration, 1000),
-        );
-    } else {
-        console_error("toaster id in index.html must be provided")
     }
 }

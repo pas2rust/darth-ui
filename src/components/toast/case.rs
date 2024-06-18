@@ -1,8 +1,8 @@
-use super::toast::{ToastBuild, ToastPosition};
+use super::toast::{Toast, ToastPosition};
 use js_sys::wasm_bindgen::JsValue;
 use leptos::web_sys::Element;
 
-pub fn case(props: &ToastBuild, toaster: &Element, toast: &Element) -> String {
+pub fn case(props: &Toast, toaster: &Element, toast: &Element) -> String {
     let add_class_to_toast = || {
         let class_split = props.class.split_whitespace();
         let js_array = js_sys::Array::new();
