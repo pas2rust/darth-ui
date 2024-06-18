@@ -4,7 +4,8 @@ use crate::components::container::container::ContainerBuild;
 use crate::components::form::components::text::{InputBuild, InputText, LabelBuild};
 use crate::components::form::form::{Form, FormBuild};
 use crate::components::icons::{icon::Icon, icons::IconBuild};
-use crate::components::toast::toast::{toast, ToastBodyBuild, ToastBuild, ToastPosition};
+use crate::components::toast::body::ToastBodyBuild;
+use crate::components::toast::toast::{toast, ToastBuild, ToastPosition};
 use darth_rust::DarthRust;
 use leptos::*;
 
