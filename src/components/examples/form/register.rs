@@ -1,7 +1,12 @@
 #![cfg(feature = "examples")]
 use crate::components::button::button::{Button, ButtonBuild};
 use crate::components::container::container::ContainerBuild;
-use crate::components::form::components::text::{InputBuild, InputText, LabelBuild};
+use crate::components::form::{
+    text::{InputTextBuild, InputText},
+    label::LabelBuild,
+    password::{InputPasswordBuild, InputPassword},
+    email::{InputEmail, InputEmailBuild}
+};
 use crate::components::form::form::{Form, FormBuild};
 use crate::components::icons::{icon::Icon, icons::IconBuild};
 use crate::components::toast::body::ToastBodyBuild;
@@ -55,7 +60,7 @@ pub fn RegisterForm() -> impl IntoView {
 
                 } else if let Err(content) = form {
                     Toast::new()
-                        .class("bg-blue-600 overflow-hidden")
+                        .class("bg-blue-600")
                         .position(ToastPosition::TopMid)
                         .duration_seconds(10)
                         .body(
@@ -67,10 +72,11 @@ pub fn RegisterForm() -> impl IntoView {
                         .render()
                 }
         })>
-            <InputText props=InputBuild::new()
+            <InputText props=InputTextBuild::new()
                 .label(LabelBuild::new()
                     .name("User")
                     .forhtml("User")
+                    .class("")
                 )
                 .icon(IconBuild::new()
                     .class("text-white")
@@ -78,7 +84,7 @@ pub fn RegisterForm() -> impl IntoView {
                     .size::<usize>(24)
                 )
                 .input_box(ContainerBuild::new()
-                    .class("box_ghost hover:border-indigo-400")
+                    .class("box_ghost rounded-full hover:border-indigo-400")
                 )
                 .container(ContainerBuild::new()
                     .class("p-2")
@@ -87,7 +93,7 @@ pub fn RegisterForm() -> impl IntoView {
                 .placeholder("Your user")
                 .name("user")
             />
-            <InputText props=InputBuild::new()
+            <InputEmail props=InputEmailBuild::new()
                 .label(LabelBuild::new()
                     .name("Email")
                     .forhtml("Email")
@@ -98,7 +104,7 @@ pub fn RegisterForm() -> impl IntoView {
                     .size::<usize>(24)
                 )
                 .input_box(ContainerBuild::new()
-                    .class("box_ghost border-white hover:border-indigo-400")
+                    .class("box_ghost rounded-full hover:border-indigo-400")
                 )
                 .container(ContainerBuild::new()
                     .class("p-2")
@@ -107,7 +113,7 @@ pub fn RegisterForm() -> impl IntoView {
                 .placeholder("Your best email")
                 .name("email")
             />
-            <InputText props=InputBuild::new()
+            <InputPassword props=InputPasswordBuild::new()
                 .label(LabelBuild::new()
                     .name("password")
                     .forhtml("Password")
@@ -118,7 +124,7 @@ pub fn RegisterForm() -> impl IntoView {
                     .size::<usize>(24)
                 )
                 .input_box(ContainerBuild::new()
-                    .class("box_ghost hover:border-indigo-400")
+                    .class("box_ghost rounded-full hover:border-indigo-400")
                 )
                 .container(ContainerBuild::new()
                     .class("p-2")

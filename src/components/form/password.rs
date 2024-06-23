@@ -1,4 +1,5 @@
-#![cfg(feature = "input-text")]
+
+#![cfg(feature = "input-password")]
 use darth_rust::DarthRust;
 use leptos::*;
 
@@ -6,15 +7,11 @@ use crate::components::{
     container::container::{Container, ContainerBuild},
     icons::icons::{Icon, IconBuild},
 };
-#[derive(DarthRust, Default)]
-pub struct LabelBuild {
-    class: &'static str,
-    id: &'static str,
-    name: &'static str,
-    forhtml: &'static str,
-}
+
+use super::label::{Label, LabelBuild};
+
 #[derive(DarthRust)]
-pub struct InputBuild {
+pub struct InputPasswordBuild {
     label: LabelBuild,
     icon: IconBuild,
     placeholder: &'static str,
@@ -26,18 +23,17 @@ pub struct InputBuild {
 }
 
 #[component]
-pub fn InputText(props: InputBuild) -> impl IntoView {
+pub fn InputPassword(props: InputPasswordBuild) -> impl IntoView {
     let (read_input, write_input) = create_signal(props.value.to_string());
     view! {
         <Container props=props.container>
-            <label class=props.label.class for=props.label.forhtml name=props.label.name id=props.label.id>
-                {props.label.name}:
-            </label>
+            <Label props=props.label.clone() />
             <Container props=props.input_box>
                 <span class="absolute z-10 pt-2 translate-x-4 pointer-events-none">
                    <Icon props=props.icon/>
                 </span>
                 <input
+                    type="password"
                     on:input=move |ev| write_input.set(event_target_value(&ev))
                     class=props.class
                     placeholder=props.placeholder

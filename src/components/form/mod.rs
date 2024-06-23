@@ -1,3 +1,14 @@
-pub mod components;
 #[cfg(feature = "form")]
+pub mod code;
+pub mod date;
+pub mod email;
 pub mod form;
+pub mod label;
+pub mod number;
+pub mod password;
+pub mod phone;
+pub mod radio;
+pub mod search;
+pub mod select;
+pub mod text;
+pub mod upload;

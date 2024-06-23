@@ -651,6 +651,10 @@ body {
   width: 100%;
 }
 
+.max-w-md {
+  max-width: 28rem;
+}
+
 .-translate-x-5 {
   --tw-translate-x: -1.25rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -736,13 +740,12 @@ body {
   overflow: hidden;
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
+.rounded-full {
+  border-radius: 9999px;
 }
 
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .bg-blue-600 {
