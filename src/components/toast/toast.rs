@@ -51,7 +51,7 @@ impl Toast {
                 toaster.append_child(&toast).unwrap();
             }
 
-            progress(doc, body, duration.clone());
+            progress(doc, body, &toast, duration.clone());
 
             set_timeout(
                 move || {

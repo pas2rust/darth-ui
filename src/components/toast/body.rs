@@ -1,6 +1,5 @@
 use darth_rust::DarthRust;
-use leptos::{set_interval, web_sys::Document, web_sys::Element};
-use std::{cell::Cell, time::Duration};
+use leptos::{web_sys::Document, web_sys::Element};
 
 #[derive(DarthRust, Default)]
 pub struct ToastBodyBuild {
@@ -11,8 +10,9 @@ pub struct ToastBodyBuild {
 
 pub fn body(doc: &Document, props: &ToastBodyBuild) -> Element {
     let body = doc.create_element(props.tag.unwrap_or("div")).unwrap();
-
+    let message = doc.create_element("p").unwrap();
     body.set_class_name(props.class);
-    body.set_text_content(Some(&props.content));
+    message.set_text_content(Some(&props.content));
+    body.append_child(&message).unwrap();
     body
 }

@@ -26,33 +26,29 @@ module.exports = {
             "0%": { opacity: 0 },
             "100%": { opacity: 1 }
           },
-          slideInRight: {
+          slideRightToLeft: {
             "0%": {
-              transform: "translateX(100%)"
+              transform: "translateX(110%)"
             },
             "100%": {
               transform: "translateX(0)"
             }
           },
-          slideInTop: {
+          slideLeftToRight: {
             "0%": {
-              transform: "translateY(-100%)"
+              transform: "translateX(-110%)"
+            },
+            "100%": {
+              transform: "translateX(0)"
+            }
+          },
+          slideTopToBottom: {
+            "0%": {
+              transform: "translateY(-150%)"
             },
             "100%": {
               transform: "translateY(0)"
             }
-          },
-          exitInTop: {
-            "0%": {
-              transform: "translateY(0%)"
-            },
-            "100%": {
-              transform: "translateY(-100%)"
-            }
-          },
-          toastin: {
-            "0%": { opacity: 0, transform: "scale(0)" },
-            "100%": { opacity: 1, transform: "scale(1)" },
           },
           shake: {
             '0%':  { transform: 'translate(1px, 1px) rotate(0deg)' },
@@ -70,10 +66,9 @@ module.exports = {
         },
         animation: {
           shake: 'shake 1s ease-in-out',
-          toast_in: "toast_in 1s ease-in-out",
-          exitInTop: "exitInTop 1s ease-in-out",
-          slideInRight: "slideInRight 1s",
-          slideInTop: "slideInTop 1s",
+          slideRightToLeft: "slideRightToLeft 1s ease-in-out",
+          slideLeftToRight: "slideLeftToRight 1s ease-in-out",
+          slideTopToBottom: "slideTopToBottom 1s ease-in-out",
           fadein: "fadein 1s ease-in-out",
           elastic: "elastic 1s ease-in-out",
           loop_fadein: "fadein 1s ease-in-out infinite",

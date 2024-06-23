@@ -569,6 +569,10 @@ body {
   pointer-events: none;
 }
 
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
 .static {
   position: static;
 }
@@ -631,12 +635,8 @@ body {
   display: none;
 }
 
-.h-2 {
-  height: 0.5rem;
-}
-
-.h-2\.5 {
-  height: 0.625rem;
+.h-3 {
+  height: 0.75rem;
 }
 
 .w-\[100\%\] {
@@ -661,8 +661,8 @@ body {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.translate-y-5 {
-  --tw-translate-y: 1.25rem;
+.translate-y-4 {
+  --tw-translate-y: 1rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -670,9 +670,37 @@ body {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-@keyframes slideInTop {
+@keyframes slideLeftToRight {
   0% {
-    transform: translateY(-100%);
+    transform: translateX(-110%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideLeftToRight {
+  animation: slideLeftToRight 1s ease-in-out;
+}
+
+@keyframes slideRightToLeft {
+  0% {
+    transform: translateX(110%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideRightToLeft {
+  animation: slideRightToLeft 1s ease-in-out;
+}
+
+@keyframes slideTopToBottom {
+  0% {
+    transform: translateY(-150%);
   }
 
   100% {
@@ -680,8 +708,8 @@ body {
   }
 }
 
-.animate-slideInTop {
-  animation: slideInTop 1s;
+.animate-slideTopToBottom {
+  animation: slideTopToBottom 1s ease-in-out;
 }
 
 .flex-col-reverse {
@@ -700,29 +728,16 @@ body {
   justify-content: center;
 }
 
-.gap-4 {
-  gap: 1rem;
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .overflow-hidden {
   overflow: hidden;
 }
 
-.rounded-md {
-  border-radius: 0.375rem;
-}
-
-.rounded-l-lg {
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
-
-.rounded-bl-lg {
-  border-bottom-left-radius: 0.5rem;
-}
-
-.rounded-br-lg {
-  border-bottom-right-radius: 0.5rem;
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border-white {
@@ -757,6 +772,18 @@ body {
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
+.pr-2 {
+  padding-right: 0.5rem;
 }
 
 .pt-2 {

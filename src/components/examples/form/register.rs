@@ -42,9 +42,9 @@ pub fn RegisterForm() -> impl IntoView {
                         form.user, form.email, form.password
                     );
                     Toast::new()
-                        .class("bg-green-500")
+                        .class("bg-green-500 overflow-hidden")
                             .position(ToastPosition::TopEnd)
-                            .duration_seconds(3)
+                            .duration_seconds(10)
                             .body(
                                 ToastBodyBuild::new()
                                 .class("p-2")
@@ -57,13 +57,13 @@ pub fn RegisterForm() -> impl IntoView {
                     Toast::new()
                         .class("bg-blue-600 overflow-hidden")
                         .position(ToastPosition::TopMid)
-                        .duration_seconds(5)
+                        .duration_seconds(10)
                         .body(
                             ToastBodyBuild::new()
-                            .class("p-2 font-bold grid")
+                            .class("pt-2 pl-2 pr-2 font-bold grid")
                             .content(content)
                         )
-                        .unique(true)
+                        .unique(false)
                         .render()
                 }
         })>
