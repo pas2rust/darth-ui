@@ -25,7 +25,7 @@ enum TailwindColor {
     BlueGrey50, BlueGrey100, BlueGrey200, BlueGrey300, BlueGrey400, BlueGrey500, BlueGrey600, BlueGrey700, BlueGrey800, BlueGrey900,
 }
 
-#[derive(DarthRust)]
+#[derive(DarthRust, Default)]
 pub struct TailwindCSS {
     rounded_md: bool,
     rounded_full: bool,
