@@ -24,12 +24,14 @@ leptos = { version = "0.6.12", features = ["csr", "nightly"] }
 regex = {version = "1.10.5", optional = true}
 
 [features]
-default = ["examples"]
+default = ["full"]
 form = ["regex", "input-text"]
 input-text = []
 input-password = []
 input-email = []
 button = []
+image = []
+avatar = []
 container = []
 icons = []
-examples = ["form", "container", "button", "icons", "input-text", "input-password", "input-email"]
+full = ["form", "container", "button", "icons", "input-text", "input-password", "input-email", "image", "avatar"]

@@ -1,13 +1,13 @@
-#![cfg(feature = "examples")]
+#![cfg(feature = "full")]
 use crate::components::button::button::{Button, ButtonBuild};
 use crate::components::container::container::ContainerBuild;
-use crate::components::form::{
-    text::{InputTextBuild, InputText},
-    label::LabelBuild,
-    password::{InputPasswordBuild, InputPassword},
-    email::{InputEmail, InputEmailBuild}
-};
 use crate::components::form::form::{Form, FormBuild};
+use crate::components::form::{
+    email::{InputEmail, InputEmailBuild},
+    label::LabelBuild,
+    password::{InputPassword, InputPasswordBuild},
+    text::{InputText, InputTextBuild},
+};
 use crate::components::icons::{icon::Icon, icons::IconBuild};
 use crate::components::toast::body::ToastBodyBuild;
 use crate::components::toast::toast::{Toast, ToastPosition};
